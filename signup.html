@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Create Account</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-body">
+
+<div class="login-box">
+
+<h2>Create New Account</h2>
+
+<input type="text" placeholder="Username" id="newUser">
+
+<input type="email" placeholder="Email" id="email">
+
+<input type="password" placeholder="Password" id="newPass">
+
+<input type="text" placeholder="Blood Group" id="blood">
+
+<input type="text" placeholder="Contact Number" id="contact">
+
+<button onclick="createAccount()">Create Account</button>
+
+<br><br>
+
+<a href="index.html">
+<button>Back to Login</button>
+</a>
+
+</div>
+
+<div class="footer">
+Blood Donation Management System © 2026
+</div>
+
+<script>
+
+function createAccount(){
+
+let user=document.getElementById("newUser").value
+let email=document.getElementById("email").value
+let pass=document.getElementById("newPass").value
+let blood=document.getElementById("blood").value
+let contact=document.getElementById("contact").value
+
+if(user!="" && email!="" && pass!="" && blood!="" && contact!=""){
+
+localStorage.setItem("username",user)
+
+alert("Account Created")
+
+window.location.href="main.html"
+
+}
+else{
+
+alert("Fill all details")
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

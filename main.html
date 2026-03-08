@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Smart Blood AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">
+🩸 Smart Blood AI
+</div>
+
+<div class="menu">
+<a href="#">Home</a>
+<a href="about.html">About</a>
+</div>
+
+<span id="time"></span>
+
+<div class="user-box">
+
+<img src="user.png" class="user-icon">
+
+<span id="showUser"></span>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+</div>
+
+
+
+<h2>Blood Donation Management System</h2>
+
+
+
+<!-- BLOOD DASHBOARD -->
+
+<h3>Blood Availability</h3>
+
+<div class="blood-dashboard">
+
+<div class="blood-card"><h4>O+</h4><p>90</p></div>
+<div class="blood-card"><h4>A+</h4><p>85</p></div>
+<div class="blood-card"><h4>B+</h4><p>60</p></div>
+<div class="blood-card"><h4>AB+</h4><p>40</p></div>
+<div class="blood-card"><h4>O-</h4><p>20</p></div>
+<div class="blood-card"><h4>A-</h4><p>15</p></div>
+<div class="blood-card"><h4>B-</h4><p>10</p></div>
+<div class="blood-card"><h4>AB-</h4><p>5</p></div>
+
+</div>
+
+
+
+<!-- SEARCH -->
+
+<h3>Search Blood Donor</h3>
+
+<select id="blood">
+<option value="">Select Blood</option>
+<option>A+</option>
+<option>B+</option>
+<option>O+</option>
+<option>AB+</option>
+<option>O-</option>
+<option>A-</option>
+<option>B-</option>
+<option>AB-</option>
+</select>
+
+<input type="text" id="city" placeholder="Enter city">
+
+<button onclick="search()">Search</button>
+
+
+
+<!-- RESULT -->
+
+<h3>Matching Donors</h3>
+
+<table id="results">
+
+<tr>
+<th>Name</th>
+<th>Blood</th>
+<th>City</th>
+</tr>
+
+</table>
+
+
+
+<!-- AVAILABLE -->
+
+<h3>Available Donors</h3>
+
+<table id="availableDonors">
+
+<tr>
+<th>Name</th>
+<th>Blood</th>
+<th>City</th>
+<th>Address</th>
+<th>Contact</th>
+<th>Last Donation</th>
+<th>Rare</th>
+</tr>
+
+</table>
+
+
+
+<br><br>
+
+
+<button onclick="nextPage()">Next Page</button>
+
+<button class="emergency" onclick="emergencyRequest()">
+Emergency Blood Request
+</button>
+
+
+
+<!-- LOADER -->
+
+<div id="loader" class="loader">
+
+<div class="loader-box">
+Sending request...
+</div>
+
+</div>
+
+
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+<div class="popup-box">
+
+<h3>Emergency Request Sent</h3>
+
+<p>Notification sent to nearby donors</p>
+
+<button onclick="closePopup()">OK</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SOUND -->
+
+<audio id="sound">
+<source src="beep.mp3" type="audio/mpeg">
+</audio>
+
+
+
+<!-- SCRIPT -->
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+
+let name = localStorage.getItem("username")
+
+if(!name){
+window.location.href="index.html"
+}
+
+document.getElementById("showUser").innerText=name
+
+
+
+setInterval(function(){
+
+let d=new Date()
+
+document.getElementById("time").innerText=d.toLocaleTimeString()
+
+},1000)
+
+
+
+function logout(){
+
+localStorage.removeItem("username")
+
+window.location.href="index.html"
+
+}
+
+
+
+function nextPage(){
+
+window.location.href="age.html"
+
+}
+
+
+
+function emergencyRequest(){
+
+let donors = ["Arun","Kumar","Rahul","Siva"]
+
+let time = new Date().toLocaleTimeString()
+
+let list = []
+
+donors.forEach(function(n){
+
+list.push({
+name:n,
+time:time
+})
+
+})
+
+localStorage.setItem("notifyList", JSON.stringify(list))
+
+
+document.getElementById("loader").style.display="flex"
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display="none"
+
+document.getElementById("popup").style.display="flex"
+
+document.getElementById("sound").play()
+
+},2000)
+
+}
+
+
+
+function closePopup(){
+
+document.getElementById("popup").style.display="none"
+
+}
+
+
+</script>
+
+
+
+<div class="footer">
+Blood Donation Management System © 2026
+</div>
+
+
+</body>
+</html>

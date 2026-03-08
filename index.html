@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Blood AI Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-body">
+
+<div class="login-box">
+
+<h2>🩸 Smart Blood AI</h2>
+
+<input type="text" placeholder="Username" id="username">
+<input type="password" placeholder="Password" id="password">
+
+<button onclick="login()">Login</button>
+
+<p>Don't have an account?</p>
+
+<a href="signup.html">
+<button>Create New Account</button>
+</a>
+
+</div>
+
+<script>
+
+function login(){
+
+let user=document.getElementById("username").value
+let pass=document.getElementById("password").value
+
+if(user!="" && pass!=""){
+
+localStorage.setItem("username",user)
+
+window.location.href="main.html"
+}
+else{
+alert("Enter username and password")
+}
+
+}
+
+</script>
+
+<div class="footer">
+Blood Donation Management System © 2026
+</div>
+
+</body>
+</html>
